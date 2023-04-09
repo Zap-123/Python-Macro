@@ -1,30 +1,33 @@
-# Macro-Python-
-To use the program, you will first need to install a few modules. The modules are as following:
+# Python Macro
 
-tkinter,
-keyboard,
-pyautogui,
-pywin32
+## Installation
 
-They can be installed with pip, a package-management system. You will need to open some sort of terminal.
+To use the program, you will first need to install a few modules. The modules are as following:  
 
-Windows 10
-On Windows 10, you must press 'Win + R' and then type 'cmd' and press enter.
+* **tkinter** 
+* **keyboard**
+* **pyautogui** 
+* **pywin32**  
 
-MacOS
-On Mac, you can press 'Control + Option + Shift + T' to open a terminal.
+They can be installed with **pip**, a package-management system. You will need to open some sort of terminal.  
 
-Now you can download the modules, by typing the following command:
+**Windows 10**  
+On Windows 10, you must press **'Win + R'** and then type **'cmd'** and press **'enter'**.  
 
-pip install tkinter
-pip install keyboard
-pip install pyautogui
-pip install pywin32
+**MacOS**  
+On Mac, you can press **'Control + Option + Shift + T'** to open a terminal.  
 
-If it doesn't work, please make sure:
+Now you can download the modules, by typing the following command:  
 
-You have installed Python correctly 
-You have the latest version of Python
-You have the latest version of pip
+* **pip install tkinter**
+* **pip install keyboard**
+* **pip install pyautogui**
+* **pip install pywin32**  
+
+If it doesn't work, please make sure:  
+
+* You have installed Python correctly 
+* You have the latest version of Python
+* You have the latest version of pip  
 
 Or, try to run your terminal as an administrator.
