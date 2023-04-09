@@ -17,7 +17,7 @@ On Windows 10, you must press **'Win + R'** and then type **'cmd'** and press **
 **MacOS**  
 On Mac, you can press **'Control + Option + Shift + T'** to open a terminal.  
 
-Now you can download the modules, by typing the following command:  
+Now you can download the modules, by typing the following commands:  
 
 * **pip install tkinter**
 * **pip install keyboard**
