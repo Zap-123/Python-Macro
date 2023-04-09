@@ -1,6 +1,6 @@
 # Python Macro
 
-## Installation
+## Installation  
 
 To use the program, you will first need to install a few modules. The modules are as following:  
 
@@ -30,4 +30,21 @@ If it doesn't work, please make sure:
 * You have the latest version of Python
 * You have the latest version of pip  
 
-Or, try to run your terminal as an administrator.
+Or, try to run your terminal as an administrator.  
+
+## Tutorial  
+
+The program can be a little confusing to work around, so here is a quick tutorial.  
+
+When starting the program, you will see a small window with **3 buttons:**  
+
+* **Mouse Macros**
+* **Keyboard Macros**
+* **Settings**  
+
+Each button opens a new window with corresponding commands.  
+Click on buttons, and input in controls in **chronological order** to be later automatically done in repeat.    
+Click on the **Submit Button** to enter in any command you typed out. (You don't need to press the submit button to input controls added via buttons, only entries)  
+
+Finally, when you are done entering in your "List of Controls", close out of all windows and press the corresponding keys to start and stop the macro loop. Default start and stop keys are **'+'** and **'-'** but can be changed in the **Settings** window.
+
