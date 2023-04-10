@@ -48,5 +48,5 @@ Click on the **Submit Button** to enter in any command you typed out. (You don't
 
 Finally, when you are done entering in your "List of Controls", close out of **all windows**  and press the corresponding keys to start and stop the macro loop. Default start and stop keys are **'+'** and **'-'** but can be changed in the **Settings** window.  
 
-**Have Fun!**
-
+**Have Fun!**  
+**Note:** The Copy&Paste System is under construction currently
