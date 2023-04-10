@@ -236,6 +236,7 @@ def OpenKeyboardWindow():
         if WaitTimeEntry.get() != '':
             if float(WaitTimeEntry.get()) != 0:
                 MacroMoves.append(f"|||{WaitTimeEntry.get()}|")
+                WaitTimeEntry.delete(0, END)
 
         print(MacroMoves)
 
