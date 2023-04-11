@@ -394,7 +394,7 @@ def OpenConfigWindow():
 
     Space(19)
 
-    LB6 = Label(ConfigGUI, text="Code to copy vvv", bg=BGC, fg="black", font=("comfortaa", 13))
+    LB6 = Label(ConfigGUI, text="Code to copy (Re-open window to update)", bg=BGC, fg="black", font=("comfortaa", 11))
     LB6.grid(row=20)
 
     CopyMacro = Entry(ConfigGUI, width=20, borderwidth=3, bg="orange", fg="purple")
@@ -438,34 +438,9 @@ def GoTo(x, y):
     win32api.SetCursorPos((x, y))
 
 
-def StringToMacList(string):
-    global MacroMoves
-    MacroMoves = []
-    closed = 1
-    wordchunk = ''
-    for i in string:
-        if i == '\'':
-            closed += 1
-            if closed == 2:
-                closed = 0
-            if closed == 1:
-                if i != ',':
-                    if i != ' ':
-                        MacroMoves.append(wordchunk)
-                        wordchunk = ''
-
-        if closed == 0:
-            if i != '\'':
-                wordchunk += i
-
-
-
 def Macro():
     global MacroMoves
     iterate = 0
-
-    if GlobCopyPaste != '':
-        StringToMacList(GlobCopyPaste)
 
     for i in MacroMoves:
         if int(GlobTimeBetweenIterations) > 0:
