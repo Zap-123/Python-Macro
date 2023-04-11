@@ -26,7 +26,7 @@ GlobCopyPaste = ''
 GlobTimeBetweenIterations = 0
 GlobTypingTime = 0
 rewrite = 1
-CPS = 10.0 * 0.93
+CPS = 6.0 * 0.93
 
 
 # +--------------------+
@@ -236,7 +236,6 @@ def OpenKeyboardWindow():
         if WaitTimeEntry.get() != '':
             if float(WaitTimeEntry.get()) != 0:
                 MacroMoves.append(f"|||{WaitTimeEntry.get()}|")
-                WaitTimeEntry.delete(0, END)
 
         print(MacroMoves)
 
@@ -305,7 +304,7 @@ def OpenKeyboardWindow():
 def OpenConfigWindow():
     BGC = "#009900"
     ConfigGUI = Toplevel()
-    ConfigGUI.geometry("300x490")
+    ConfigGUI.geometry("300x550")
     ConfigGUI.title("ConfigGUI")
     ConfigGUI.config(bg=BGC)
 
@@ -322,7 +321,6 @@ def OpenConfigWindow():
         global GlobCopyPaste
         global rewrite
         rewrite = 1
-
         if StartKey.get() != '':
             if StartKey.get() != GlobStartButton:
                 GlobStartButton = StartKey.get()
@@ -331,8 +329,8 @@ def OpenConfigWindow():
             if StartKey.get() != GlobStopButton:
                 GlobStopButton = StopKey.get()
 
-        if TimeBetweenInterations.get() != '':
-            GlobTimeBetweenIterations = TimeBetweenInterations.get()
+        if TimeBetweenIterations.get() != '':
+            GlobTimeBetweenIterations = TimeBetweenIterations.get()
 
         if OpenKey.get() != '':
             if OpenKey.get() != GlobOpenKey:
@@ -382,13 +380,13 @@ def OpenConfigWindow():
     LB4 = Label(ConfigGUI, text="Seconds Between Iterations", bg=BGC, fg="black", font=("comfortaa", 13))
     LB4.grid(row=14)
 
-    TimeBetweenInterations = Entry(ConfigGUI, width=10, bg="Yellow", fg="Blue", borderwidth=3)
-    TimeBetweenInterations.grid(row=15)
-    TimeBetweenInterations.insert(0, str(GlobTimeBetweenIterations))
+    TimeBetweenIterations = Entry(ConfigGUI, width=10, bg="Yellow", fg="Blue", borderwidth=3)
+    TimeBetweenIterations.grid(row=15)
+    TimeBetweenIterations.insert(0, str(GlobTimeBetweenIterations))
 
     Space(16)
 
-    LB5 = Label(ConfigGUI, text="Copy&Paste (From Terminal)", bg=BGC, fg="black", font=("comfortaa", 13))
+    LB5 = Label(ConfigGUI, text="Copy & Paste", bg=BGC, fg="black", font=("comfortaa", 13))
     LB5.grid(row=17)
 
     CopyPasteEntry = Entry(ConfigGUI, width=10, borderwidth=3, bg="purple", fg="orange")
@@ -396,19 +394,28 @@ def OpenConfigWindow():
 
     Space(19)
 
+    LB6 = Label(ConfigGUI, text="Code to copy vvv", bg=BGC, fg="black", font=("comfortaa", 13))
+    LB6.grid(row=20)
+
+    CopyMacro = Entry(ConfigGUI, width=20, borderwidth=3, bg="orange", fg="purple")
+    CopyMacro.grid(row=21)
+    CopyMacro.insert(0, str(MacroMoves))
+
+    Space(22)
+
     SubmitButton = Button(ConfigGUI, text="Submit", bg="Green", fg="red", borderwidth=4, command=Submit)
-    SubmitButton.grid(row=20)
+    SubmitButton.grid(row=23)
 
     CloseButton = Button(ConfigGUI, text="Close/Done", bg="Red", fg="green", borderwidth=4, command=CloseWin)
-    CloseButton.grid(row=21)
+    CloseButton.grid(row=24)
 
     ResetButton = Button(ConfigGUI, text="Reset All", bg="Orange", fg="Dark Red", borderwidth=4, command=Reset)
-    ResetButton.grid(row=22)
+    ResetButton.grid(row=25)
 
-    Space(23)
+    Space(26)
 
     LB = Label(ConfigGUI, text="════━━━━──── • ────━━━━════", fg="#ff3399", bg=BGC)
-    LB.grid(row=24)
+    LB.grid(row=27)
 
 
 # +--------------------+
@@ -418,22 +425,47 @@ def OpenConfigWindow():
 def LeftClick():
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
-    time.sleep(1 / (CPS * (4/3)))
+    time.sleep(1 / (CPS * (4 / 3)))
 
 
 def RightClick():
     win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, 0, 0)
     win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, 0, 0)
-    time.sleep(1 / (CPS * (4/3)))
+    time.sleep(1 / (CPS * (4 / 3)))
 
 
 def GoTo(x, y):
     win32api.SetCursorPos((x, y))
 
 
+def StringToMacList(string):
+    global MacroMoves
+    MacroMoves = []
+    closed = 1
+    wordchunk = ''
+    for i in string:
+        if i == '\'':
+            closed += 1
+            if closed == 2:
+                closed = 0
+            if closed == 1:
+                if i != ',':
+                    if i != ' ':
+                        MacroMoves.append(wordchunk)
+                        wordchunk = ''
+
+        if closed == 0:
+            if i != '\'':
+                wordchunk += i
+
+
+
 def Macro():
     global MacroMoves
     iterate = 0
+
+    if GlobCopyPaste != '':
+        StringToMacList(GlobCopyPaste)
 
     for i in MacroMoves:
         if int(GlobTimeBetweenIterations) > 0:
